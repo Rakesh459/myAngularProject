@@ -1,0 +1,37 @@
+<form class="container" #employeeComponentForm="ngForm">
+  <div class="card">
+
+    <div class="card-header text-white bg-danger">
+      <h4 class="card-title">Create Component</h4>
+    </div>
+    <div class="card-body">
+
+      <div class="form-group text-left col-md-5" [class.was-validated]="name.touched">
+        <label for="name" class="control-label">Name <span class="has-error">*</span></label>
+        <input class="form-control" type="text" name="name" id="name" [(ngModel)]="employee.name"
+          required #name="ngModel" autocomplete="off" />
+        <span *ngIf="name.invalid && name.touched" [class.invalid-feedback]="name.invalid && name.touched"> Name Is Required </span>
+      </div>
+
+      <div class="form-group text-left col-md-5">
+        <label for="dateofbirth">Date Of Birth <span class="has-error">*</span></label>
+        <input class="form-control" [class.has-error]="(dateofbirth.errors?.dateofbirthrequired ||dateofbirth.errors?.invaliddate) && dateofbirth.touched"
+        [class.has-success]="dateofbirth.valid" appDateValidator bsDatepicker [bsConfig]="datePickerConfig" type="text" name="dateofbirth" id="dateofbirth"
+          [(ngModel)]="employee.dateofbirth" autocomplete="off" placement="bottom" #dateofbirth = "ngModel" />
+          <span *ngIf ="dateofbirth.errors?.dateofbirthrequired && dateofbirth.touched" 
+          [class.has-error]="dateofbirth.errors?.dateofbirthrequired && dateofbirth.touched"
+          > dateofbirth Is Required</span>
+          <span *ngIf ="dateofbirth.errors?.invaliddate && dateofbirth.touched" 
+          [class.has-error]="dateofbirth.errors?.invaliddate && dateofbirth.touched"
+          > dateofbirth Is Invalid</span>
+      </div>
+
+    </div>
+    <div class="card-footer bg-danger">
+      <button class="btn" [class.btn-warning]="employeeComponentForm.invalid" [class.btn-success]="employeeComponentForm.valid"
+        [disabled]="employeeComponentForm.invalid" (click)="onClickSubmitButton()">
+        Sumbit</button>
+    </div>
+    {{ employeeComponentForm.value | json}}
+  </div>
+</form>
