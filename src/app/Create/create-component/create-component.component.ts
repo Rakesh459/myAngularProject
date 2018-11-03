@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker'
-import { Employee } from '../Employee';
+import { Employee, RecapResponse } from '../Employee';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-component',
@@ -11,8 +12,8 @@ export class CreateComponentComponent implements OnInit {
  
   datePickerConfig : Partial<BsDatepickerConfig>;
   employee: Employee = new Employee();
-  
-  constructor() { 
+  success:boolean;
+  constructor(private _http: HttpClient) { 
     this.employee.name = "";
     this.employee.dateofbirth = null;
   }
@@ -31,8 +32,18 @@ export class CreateComponentComponent implements OnInit {
   }
 
   onClickSubmitButton(){
-    alert("submitted ra puka");
-    console.log(this.employee.dateofbirth);
+
+    this._http.post<RecapResponse>('https://www.google.com/recaptcha/api/siteverify?secret=6Lcff3gUAAAAAFnoLjYiByMnbclXhQ40ymAlw1qt&response='+this.employee.recaptcha,null)
+                    .subscribe(emp => {if( emp.success){
+                      alert("submitted ra puka");
+                  console.log(this.employee);
+                } else{
+                  alert("not submitted ra puka");
+                }
+                    }
+                      
+                      )
+    
   }
 
 
