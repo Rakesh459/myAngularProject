@@ -7,26 +7,38 @@
     <h4 class="card-title">Create Component</h4>
   </div>
 
-  <div class="card-body">
+  <div class="card-body card card-block bg-faded">
     <div class="form-group text-left">
       <label for="firstname" class="control-label">First Name <span class="has-error">*</span></label>
-  <input class="form-control" type="text" id="firstname" formControlName="firstname">
-  </div>
-  <div class="form-group text-left">
-      <label for="lastname" class="control-label">Last Name <span class="has-error">*</span></label>
-  <input class="form-control" type="text" id="lastname" formControlName="lastname">
-  </div>
-  <div class="form-group text-left" formGroupName="skills">
-      <label for="skill" class="col-sm-2">Skills <span class="has-error">*</span></label>
-      <input class="form-control col-sm-8" type="text" placeholder="Skill" id="skill" formControlName="skill">
+      <input class="form-control" type="text" id="firstname" placeholder="First Name" formControlName="firstname">
     </div>
-</div>
+    <div class="form-group text-left">
+      <label for="lastname" class="control-label">Last Name <span class="has-error">*</span></label>
+      <input class="form-control" type="text" id="lastname" placeholder="Last Name" formControlName="lastname">
+    </div>
+    <div class="form-group text-left card card-block bg-faded" formGroupName="skills">
+
+      <div class="form-group col-md-6">
+        <label for="skillName" class="text-left">Skills <span class="has-error">*</span></label>
+        <input class="form-control" type="text" placeholder="Skill" id="skillName" formControlName="skillName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="experience" class="text-left">Experience <span class="has-error">*</span></label>
+        <input class="form-control" type="text" placeholder="Experience" id="experience" formControlName="experience">
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="proficiency" class="text-left">Proficiency <span class="has-error">*</span></label>
+        <input class="form-control" type="text" placeholder="Proficiency" id="proficiency" formControlName="proficiency">
+      </div>
+    </div>
+  </div>
 
   <div class="card-footer bg-danger">
-    <button class="btn btn-info" (click)="onClickSubmitButton()">
+    <button class="btn btn-primary" (click)="onClickSubmitButton()">
       Sumbit</button>
   </div>
 
 </form>
 {{employeeForm.value | json}}
-
+{{employeeForm.get('firstname').errors}}

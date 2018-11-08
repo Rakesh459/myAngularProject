@@ -21,6 +21,12 @@ export class CustomValidatorDirective implements Validator {
             if(control && control.value=="Invalid Date"){
                 return {'invaliddate':true}
             }
+            else {
+              if(control.value > new Date(2000, 10, 30) || control.value< new Date(1994, 10, 30))
+              {
+                  return  {'invaliddate':true}
+              }
+            }
         }
         return null;
     }

@@ -33,12 +33,13 @@ export class CreateComponentComponent implements OnInit {
 
   onClickSubmitButton(){
 
+    console.log(this.employee);
     this._http.post<RecapResponse>('https://www.google.com/recaptcha/api/siteverify?secret=6Lcff3gUAAAAAFnoLjYiByMnbclXhQ40ymAlw1qt&response='+this.employee.recaptcha,null)
                     .subscribe(emp => {if( emp.success){
-                      alert("submitted ra puka");
+                      alert("submitted ra");
                   console.log(this.employee);
                 } else{
-                  alert("not submitted ra puka");
+                  alert("not submitted ra");
                 }
                     }
                       

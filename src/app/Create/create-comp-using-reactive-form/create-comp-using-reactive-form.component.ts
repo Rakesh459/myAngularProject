@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-comp-using-reactive-form',
@@ -26,7 +26,7 @@ export class CreateCompUsingReactiveFormComponent implements OnInit {
   }
 
   onClickSubmitButton(){
- console.log( this.employeeForm.get('firstname').value);
+ console.log( this.employeeForm.value);
 }
   
 }
